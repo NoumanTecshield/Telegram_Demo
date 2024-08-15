@@ -6,6 +6,7 @@
     <title>Unity WebGL Player | Sushi Hit</title>
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> 
   </head>
   <body>
     <div id="unity-container" class="unity-desktop">
@@ -57,7 +58,7 @@
       }
 
       var buildUrl = "Build";
-     // var loaderUrl = buildUrl + "/APK.loader.js";
+      var loaderUrl = buildUrl + "/APK.loader.js";
       var config = {
         dataUrl: buildUrl + "/APK.data",
         frameworkUrl: buildUrl + "/APK.framework.js",
@@ -101,12 +102,11 @@
       loadingBar.style.display = "block";
 
       
-      
       const urlParams = new URLSearchParams(window.location.search);
       const token = urlParams.get('token');
 
       var script = document.createElement("script");
-      //script.src = loaderUrl;
+      script.src = loaderUrl;
       script.onload = () => {
         createUnityInstance(canvas, config, (progress) => {
           progressBarFull.style.width = 100 * progress + "%";
